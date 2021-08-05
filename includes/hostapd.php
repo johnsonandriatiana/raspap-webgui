@@ -14,7 +14,7 @@ getWifiInterface();
 function DisplayHostAPDConfig()
 {
     $status = new StatusMessages();
-    $system = new System();
+    $system = new RaspAP\System\System();
     $arrConfig = array();
     $arr80211Standard = [
         'a' => '802.11a - 5 GHz',
