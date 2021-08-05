@@ -153,7 +153,6 @@ $bridgedEnabled = getBridgedState();
         <a class="nav-link" href="auth_conf"><i class="fas fa-user-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Authentication"); ?></a>
         </li>
           <?php endif; ?>
-          <?php endif; ?> -->
           <?php if (RASPI_VNSTAT_ENABLED) : ?>
         <li class="nav-item">
           <a class="nav-link" href="data_use"><i class="fas fa-chart-bar fa-fw mr-2"></i><span class="nav-label"><?php echo _("Data usage"); ?></a>
