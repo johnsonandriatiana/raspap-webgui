@@ -507,7 +507,6 @@ function _default_configuration() {
         sudo cp $webroot_dir/config/090_wlan0.conf $raspap_wlan0 || _install_status 1 "Unable to move dnsmasq wlan0 configuration file"
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
         sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
-        sudo cp $webroot_dir/config/hostapd.ini $raspap_dir || _install_status 1 "Unable to move hostapd.ini configuration file"
 
         echo "Changing file ownership of ${raspap_network}/defaults.json"
         sudo chown $raspap_user:$raspap_user "$raspap_network"/defaults.json || _install_status 1 "Unable to change file ownership for defaults.json"
