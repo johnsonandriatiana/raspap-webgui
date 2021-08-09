@@ -22,6 +22,7 @@ readonly raspap_user="www-data"
 readonly raspap_sudoers="/etc/sudoers.d/090_raspap"
 readonly raspap_default="/etc/dnsmasq.d/090_raspap.conf"
 readonly raspap_wlan0="/etc/dnsmasq.d/090_wlan0.conf"
+readonly raspap_uap0="/etc/dnsmasq.d/090_uap0.conf"
 readonly raspap_adblock="/etc/dnsmasq.d/090_adblock.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly raspap_network="$raspap_dir/networking/"
@@ -59,6 +60,7 @@ function _install_raspap() {
     _install_mobile_clients
     _prompt_install_wireguard
     _patch_system_files
+    _enable_ap_sta
     _install_complete
 }
 
@@ -504,7 +506,7 @@ function _default_configuration() {
 
         sudo cp $webroot_dir/config/hostapd.conf /etc/hostapd/hostapd.conf || _install_status 1 "Unable to move hostapd configuration file"
         sudo cp $webroot_dir/config/090_raspap.conf $raspap_default || _install_status 1 "Unable to move dnsmasq default configuration file"
-        sudo cp $webroot_dir/config/090_wlan0.conf $raspap_wlan0 || _install_status 1 "Unable to move dnsmasq wlan0 configuration file"
+        sudo cp $webroot_dir/config/090_wlan0.conf $raspap_wlan0 || _install_status 1 "Unable to move dnsmasq wlan0 configuration file"        
         sudo cp $webroot_dir/config/dhcpcd.conf /etc/dhcpcd.conf || _install_status 1 "Unable to move dhcpcd configuration file"
         sudo cp $webroot_dir/config/defaults.json $raspap_network || _install_status 1 "Unable to move defaults.json settings"
 
@@ -524,6 +526,15 @@ function _default_configuration() {
         if [ ! -f "$webroot_dir/includes/config.php" ]; then
             sudo cp "$webroot_dir/config/config.php" "$webroot_dir/includes/config.php"
         fi
+        _install_status 0
+    fi
+}
+
+function _enable_ap_sta() {
+    if [ "$upgrade" == 0 ]; then
+        _install_log "Applying ap_sta configuration "
+        sudo cp $webroot_dir/config/090_uap0.conf $raspap_uap0 || _install_status 1 "Unable to move dnsmasq wlan0 configuration file"
+        sudo cp $webroot_dir/config/hostapd.ini $raspap_dir || _install_status 1 "Unable to move hostapd.ini configuration file"
         _install_status 0
     fi
 }
