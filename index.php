@@ -225,7 +225,7 @@ $bridgedEnabled = getBridgedState();
             DisplayAbout();
             break;
         default:
-            DisplayDashboard($extraFooterScripts);
+            DisplayWPAConfig();
         }
         ?>
       </div><!-- /.container-fluid -->
