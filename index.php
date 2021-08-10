@@ -130,39 +130,16 @@ $bridgedEnabled = getBridgedState();
             </div>
           </div>
         </div>
-        <li class="nav-item">
-          <a class="nav-link" href="wlan0_info"><i class="fas fa-tachometer-alt fa-fw mr-2"></i><span class="nav-label"><?php echo _("Dashboard"); ?></span></a>
-        </li>
-          <?php if (RASPI_HOTSPOT_ENABLED) : ?>
+        <?php if (RASPI_HOTSPOT_ENABLED) : ?>
         <li class="nav-item">
           <a class="nav-link" href="hostapd_conf"><i class="far fa-dot-circle fa-fw mr-2"></i><span class="nav-label"><?php echo _("Hotspot"); ?></a>
         </li>
-          <?php endif; ?>
-          <?php if (RASPI_NETWORK_ENABLED) : ?>
-        <li class="nav-item">
-           <a class="nav-link" href="network_conf"><i class="fas fa-network-wired fa-fw mr-2"></i><span class="nav-label"><?php echo _("Networking"); ?></a>
-        </li> 
           <?php endif; ?>
           <?php if (RASPI_WIFICLIENT_ENABLED && !$bridgedEnabled) : ?>
         <li class="nav-item">
           <a class="nav-link" href="wpa_conf"><i class="fas fa-wifi fa-fw mr-2"></i><span class="nav-label"><?php echo _("WiFi client"); ?></span></a>
         </li>
           <?php endif; ?>
-          <?php if (RASPI_CONFAUTH_ENABLED) : ?>
-        <li class="nav-item">
-        <a class="nav-link" href="auth_conf"><i class="fas fa-user-lock fa-fw mr-2"></i><span class="nav-label"><?php echo _("Authentication"); ?></a>
-        </li>
-          <?php endif; ?>
-          <?php if (RASPI_VNSTAT_ENABLED) : ?>
-        <li class="nav-item">
-          <a class="nav-link" href="data_use"><i class="fas fa-chart-bar fa-fw mr-2"></i><span class="nav-label"><?php echo _("Data usage"); ?></a>
-        </li>
-          <?php endif; ?>
-            <?php if (RASPI_SYSTEM_ENABLED) : ?>
-          <li class="nav-item">
-          <a class="nav-link" href="system_info"><i class="fas fa-cube fa-fw mr-2"></i><span class="nav-label"><?php echo _("System"); ?></a>
-          </li>
-            <?php endif; ?>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
