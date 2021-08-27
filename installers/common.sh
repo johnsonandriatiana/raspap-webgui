@@ -23,6 +23,7 @@ readonly raspap_sudoers="/etc/sudoers.d/090_raspap"
 readonly raspap_default="/etc/dnsmasq.d/090_raspap.conf"
 readonly raspap_wlan0="/etc/dnsmasq.d/090_wlan0.conf"
 readonly raspap_uap0="/etc/dnsmasq.d/090_uap0.conf"
+readonly wpa_supplicant="/etc/wpa_supplicant/wpa_supplicant.conf"
 readonly raspap_adblock="/etc/dnsmasq.d/090_adblock.conf"
 readonly raspap_sysctl="/etc/sysctl.d/90_raspap.conf"
 readonly raspap_network="$raspap_dir/networking/"
@@ -534,6 +535,7 @@ function _enable_ap_sta() {
     if [ "$upgrade" == 0 ]; then
         _install_log "Applying ap_sta configuration "
         sudo cp $webroot_dir/config/090_uap0.conf $raspap_uap0 || _install_status 1 "Unable to move dnsmasq wlan0 configuration file"
+        sudo cp $webroot_dir/config/wpa_supplicant.conf $wpa_supplicant || _install_status 1 "Unable to move wpa_supplicant configuration file"
         sudo cp $webroot_dir/config/hostapd.ini $raspap_dir || _install_status 1 "Unable to move hostapd.ini configuration file"
         _install_status 0
     fi
